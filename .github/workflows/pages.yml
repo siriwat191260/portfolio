@@ -4,7 +4,10 @@ on:
   push:
     branches: [main]
     paths:
-      - portfolio-preview.html
+      - index.html
+      - projects.html
+      - contact.html
+      - assets/**
       - .github/workflows/pages.yml
   workflow_dispatch:
 
@@ -23,7 +26,8 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir -p _site
-          cp portfolio-preview.html _site/index.html
+          cp index.html projects.html contact.html _site/
+          cp -R assets _site/assets
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
