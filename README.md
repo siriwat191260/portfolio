@@ -1,13 +1,26 @@
 # Siriwat's portfolio
-Three static pages with shared styling and navigation:
-- index.html: profile, passion, and tech stack
-- projects.html: project cards, details, and demo buttons
-- contact.html: email, GitHub, and LinkedIn
+Next.js App Router + TypeScript + Material UI. Three routes:
+- /: about, profile, passion, and tech stack
+- /projects/: project cards, details, and demo links
+- /contact/: email, GitHub, and LinkedIn
 
-Edit the HTML directly. Styling and menu behavior live in assets/.
-Project cards are samples. Replace disabled demo buttons with anchors to your actual demos. Add your contact email and LinkedIn URL before enabling those buttons.
+## Local development
+Use Node.js 22 or later.
+Run npm ci, then npm run dev. Open http://localhost:3000.
+Run npm run typecheck and npm run build for production checks.
+The static export is generated in out/.
 
-## Deploy
-Push the HTML pages, assets/, and .github/workflows/pages.yml to main.
-In GitHub Settings > Pages, choose GitHub Actions. The workflow deploys all pages on relevant pushes to main and supports manual runs.
-Open https://siriwat191260.github.io/portfolio/ after a successful deployment.
+## Personalize
+Edit src/data/portfolio.ts for profile, stack, projects, demo URLs, and contact links.
+Edit src/app/page.tsx for your introduction and passion.
+The shared MUI theme is in src/components/Providers.tsx.
+Empty demo, email, and LinkedIn URLs show disabled buttons instead of invented links.
+
+## GitHub Pages
+The workflow installs from package-lock.json, checks TypeScript, builds the export,
+and deploys out/. It runs on pushes to main and manually.
+In repository Settings > Pages, select GitHub Actions.
+NEXT_PUBLIC_BASE_PATH is /portfolio for siriwat191260.github.io/portfolio/.
+Change that workflow variable if renaming the repository.
+Local development uses no base path.
+Legacy HTML files remain as references; GitHub Pages deploys only the Next.js export.
